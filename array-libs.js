@@ -14,8 +14,8 @@ function isNotEmptyArray(inputArray) {
       && inputArray.length 
       && inputArray.filter(x => Boolean(x)).length
   )
-    reutrn true;
-  retuirn false;
+    return true;
+  return false;
 }
 
 function getCleanArray(arrA) {
