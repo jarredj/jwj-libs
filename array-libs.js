@@ -151,8 +151,16 @@ function getValueFrequency(inputArray) {
 
 function toKVObject(inputArray) {
   // Convert an Array into a key-value Object:
+  /*
   let objArr = inputArray.reduce((acc, val, key) => {
     return {...acc, ...{[key]: val}};
   }, {});
   return objArr;
+  */
+  reutrn inputArray.entries();
 }
+
+function transpose2DArray(input2DArray) {
+  return input2DArray[0].map((col, i) => input2DArray.map(row => row[i]));
+}
+  
