@@ -101,8 +101,8 @@ function getDuplicateValCount(inputArray) {
   return dupCount;
 }
 
-function getUniqueValues(inputArray) {
-  // Get unique Array values: 
+function getUniqueValuesViaReduce(inputArray) {
+  // Get unique Array values using the reduce() method: 
   let uniqueValues = inputArray.reduce((acc, elm, key) => {
     if (elm in acc) {
       acc[elm] = false;
@@ -121,10 +121,21 @@ function getUniqueValues(inputArray) {
   return uniqueValues;
 }
 
-function getNonDupValues(inputArray) {
-  // Remove duplicate values from an Array:
-  let noDupArr = Array.from(new Set(inputArray));
-  return noDupArr;
+function getUniqueValuesViaFilter(inputArray) {
+  // Get unique Array values using the filter() method:
+  let uniqueValues = inputArray.filter((elm, index, array) => array.indexOf(elm) == index);
+  return uniqueValues;
+}
+
+function getUniqueValuesViaSet(inputArray) {
+  // Get unique Array values using a Set:
+  let uniqueValues = Array.from(new Set(inputArray));
+  return uniqueValues;
+}
+
+function getUniqueValues(inputArray) {
+  // Get unique values using the best method
+  return  getUniqueValuesViaSet(inputArray);
 }
 
 function getDupValuesCounts(inputArray) {
@@ -149,18 +160,36 @@ function getValueFrequency(inputArray) {
   return countObj
 }
 
-function toKVObject(inputArray) {
+function arr2DtoKVObjectViaReduce(inputArray) {
   // Convert an Array into a key-value Object:
-  /*
-  let objArr = inputArray.reduce((acc, val, key) => {
-    return {...acc, ...{[key]: val}};
+  // Input: array should contain elements formatted like [key, value]
+  // !Elements with duplicate keys will use the last value in the array for the output object
+  // Output: object with a key:value pair for each unique key in the array
+  let arrObj = inputArray.reduce((obj, elmArr) => {
+    let [key, value] = elmArr;
+    obj[key] = value;
+    return obj;
+    //return void(obj[key] = value) || obj;
   }, {});
-  return objArr;
-  */
-  reutrn inputArray.entries();
+  return arrObj;
+}
+
+function arr2DtoKVObjectViaEntries(inputArray) {
+  // Convert an Array into a key-value Object:
+  let arrObj = {};
+  for (const [index, element] of inputArray.entries()) {
+    let [key, value] = element;
+    arrObj[key] = value;
+  }
+  return arrObj;
 }
 
 function transpose2DArray(input2DArray) {
+  // Given an array containing row elements that are arrays of col values, swap the cols and rows
+  // Input: [[row1col1, row1col2, row1col3], [row2col1, row2col2, row2col3]]
+  // !The length of each subarray should be the same,
+  // ! Otherwise the Output subarrays will be the length of the shortest row in the original array, extra cols in other rows will be discarded
+  // Output: [[row1col1, row2col2], [row1col2, row2col2], [row1col3, row2col3]]
   return input2DArray[0].map((col, i) => input2DArray.map(row => row[i]));
 }
   
