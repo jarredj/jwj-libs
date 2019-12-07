@@ -2,10 +2,10 @@ function isNumeric( input ) {
   return !isNaN(parseFloat(input)) && isFinite(input);
 }
 
-function isPureInteger( input ) {
+function isPureNumber( input ) {
   return /^\-?\d*\.?\d+$/.test(input); 
 }
 
-function isPureNumber( input ) {
+function isPureInteger( input ) {
   return /^\-?\d+$/.test(input);
 }
