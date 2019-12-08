@@ -1,20 +1,12 @@
 export default class BinaryTree {
-  let value;
-  let left = new BinaryTree();
-  let right = new BinaryTree();
+  value = undefined;
+  left = new BinaryTree();
+  right = new BinaryTree();
   
   constructor( nodeValue ) {
     this.value = nodeValue;
   }
-  
-  hasLeft() {
-    return (this.leftVal typeof != 'undefined');
-  }
-  
-  hasRight() {
-    return (this.rightVal typeof != 'undefined');
-  }
-  
+
   get leftVal() {
     return this.left.value;
   }
@@ -22,5 +14,15 @@ export default class BinaryTree {
   get rightVal() {
     return this.right.value;
   }
+
+  hasLeft() {
+    return (typeof this.left.value != 'undefined');
+  }
+  
+  hasRight() {
+    return (typeof this.right.value != 'undefined');
+  }
+  
+
 
 }

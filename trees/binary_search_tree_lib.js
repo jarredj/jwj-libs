@@ -1,6 +1,6 @@
-import BinaryTree from binary_search_tree;
+import BinaryTree from "binary_tree_lib";
 
-export default BinarySearchTree extends BinaryTree {
+export default class BinarySearchTree extends BinaryTree {
 
   insert( value ) {
     if (value < this.value) {
@@ -10,16 +10,16 @@ export default BinarySearchTree extends BinaryTree {
     }    
   }
   
-  function toString() {
+  toString() {
     return this.left.toString() + ", " + this.value + ", " + this.right.toString();    
   }
   
-  function toArray() {
+  toArray() {
     return [...this.left.toArray(), this.value, ...this.right.toArray()];
   }
   
   has( value ) {
-    if (this.value typeof == 'undefined') {
+    if (typeof this.value == 'undefined') {
       return false;
     }
     if (value == this.value) {
